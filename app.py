@@ -61,28 +61,39 @@ section[data-testid="stSidebar"] [aria-selected="true"] {
 }
 
 /* ── Tipografia ──────────────────────────────────────── */
-html, body, [class*="css"] { font-size: 17px !important; }
-h1 {
+/* Base: aumenta o tamanho geral do texto */
+.main .block-container p,
+.main .block-container li,
+.main .block-container label,
+.main .block-container span:not([data-testid]),
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li {
+    font-size: 1.05rem !important;
+    line-height: 1.7 !important;
+    color: #374151 !important;
+}
+
+/* Títulos — seletores de alta especificidade */
+[data-testid="stHeading"] h1,
+.main h1 {
     color: #1B2A4A !important;
     font-weight: 700 !important;
     font-size: 2.6rem !important;
     letter-spacing: -0.02em !important;
+    line-height: 1.15 !important;
 }
-h2 {
+[data-testid="stHeading"] h2,
+.main h2 {
     color: #1B2A4A !important;
     font-weight: 600 !important;
-    font-size: 1.9rem !important;
+    font-size: 1.8rem !important;
     letter-spacing: -0.01em !important;
 }
-h3 {
+[data-testid="stHeading"] h3,
+.main h3 {
     color: #2D4A72 !important;
     font-weight: 500 !important;
-    font-size: 1.5rem !important;
-}
-p, li, span, label, div {
-    font-size: 1rem !important;
-    color: #374151;
-    line-height: 1.7;
+    font-size: 1.4rem !important;
 }
 
 /* ── Metric cards — elevação + tint, sem side-stripe ─── */
