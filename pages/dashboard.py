@@ -52,7 +52,7 @@ with col1:
             "threshold": {"line": {"color": "red", "width": 4}, "thickness": 0.75, "value": 100},
         },
     ))
-    fig_gauge.update_layout(height=300)
+    fig_gauge.update_layout(height=300, paper_bgcolor="white", font=dict(color="#374151"))
     st.plotly_chart(fig_gauge, use_container_width=True)
 
 with col2:
@@ -62,11 +62,13 @@ with col2:
     limites_vals = [m["limite"] for m in mesas]
 
     fig_bar = go.Figure()
-    fig_bar.add_trace(go.Bar(name="VaR", x=nomes, y=vars_vals, marker_color="steelblue"))
-    fig_bar.add_trace(go.Bar(name="ES", x=nomes, y=es_vals, marker_color="coral"))
+    fig_bar.add_trace(go.Bar(name="VaR", x=nomes, y=vars_vals, marker_color="#1B4F8A"))
+    fig_bar.add_trace(go.Bar(name="ES", x=nomes, y=es_vals, marker_color="#E07B54"))
     fig_bar.add_trace(go.Scatter(name="Limite", x=nomes, y=limites_vals, mode="markers",
-                                  marker=dict(symbol="line-ew-open", size=20, color="black", line_width=3)))
-    fig_bar.update_layout(title="VaR, ES e Limites por Mesa", barmode="group", height=300, yaxis_title="R$")
+                                  marker=dict(symbol="line-ew-open", size=20, color="#1B2A4A", line_width=3)))
+    fig_bar.update_layout(title="VaR, ES e Limites por Mesa", barmode="group", height=300, yaxis_title="R$",
+                           plot_bgcolor="white", paper_bgcolor="white",
+                           font=dict(color="#374151"), title_font=dict(color="#1B2A4A"))
     st.plotly_chart(fig_bar, use_container_width=True)
 
 st.markdown("---")
@@ -83,9 +85,11 @@ with col1:
         text=[f"{u:.1f}%" for u in utils],
         textposition="outside",
     ))
-    fig_util.add_vline(x=100, line_dash="dash", line_color="red")
+    fig_util.add_vline(x=100, line_dash="dash", line_color="#C0392B")
     fig_util.update_layout(title="Utilização dos Limites", height=300,
-                            xaxis=dict(range=[0, max(max(utils) * 1.2, 120)]))
+                            xaxis=dict(range=[0, max(max(utils) * 1.2, 120)]),
+                            plot_bgcolor="white", paper_bgcolor="white",
+                            font=dict(color="#374151"), title_font=dict(color="#1B2A4A"))
     st.plotly_chart(fig_util, use_container_width=True)
 
 with col2:

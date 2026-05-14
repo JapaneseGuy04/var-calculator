@@ -40,7 +40,7 @@ init_session()
 
 st.markdown("""
 <style>
-/* Sidebar */
+/* ── Sidebar ─────────────────────────────────────────── */
 section[data-testid="stSidebar"] {
     background-color: #1B2A4A !important;
 }
@@ -49,57 +49,92 @@ section[data-testid="stSidebar"] span,
 section[data-testid="stSidebar"] p,
 section[data-testid="stSidebar"] a,
 section[data-testid="stSidebar"] div {
-    color: #CBD5E8 !important;
+    color: #B8C8E0 !important;
 }
 section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a:hover {
-    background-color: rgba(255,255,255,0.08) !important;
-    border-radius: 6px;
+    background-color: rgba(255,255,255,0.07) !important;
+    border-radius: 5px;
 }
 section[data-testid="stSidebar"] [aria-selected="true"] {
-    background-color: rgba(27,79,138,0.6) !important;
-    border-radius: 6px;
+    background-color: rgba(255,255,255,0.12) !important;
+    border-radius: 5px;
 }
 
-/* Headings */
-h1 { color: #1B2A4A !important; font-weight: 700 !important; }
-h2, h3 { color: #1E3A6E !important; }
-
-/* Metric cards */
-[data-testid="stMetric"] {
-    background-color: #F0F6FF;
-    border-radius: 10px;
-    padding: 1rem 1.2rem !important;
-    border-left: 4px solid #1B4F8A;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+/* ── Tipografia ──────────────────────────────────────── */
+h1 {
+    color: #1B2A4A !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
 }
-[data-testid="stMetricLabel"] { color: #4A5568 !important; font-size: 0.82rem !important; }
-[data-testid="stMetricValue"] { color: #1B2A4A !important; font-weight: 700 !important; }
-
-/* Buttons */
-.stButton > button, [data-testid="stFormSubmitButton"] > button {
-    border-radius: 6px !important;
+h2 {
+    color: #1B2A4A !important;
     font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
 }
+h3 {
+    color: #2D4A72 !important;
+    font-weight: 500 !important;
+}
+p, li { color: #374151; line-height: 1.65; }
+
+/* ── Metric cards — elevação + tint, sem side-stripe ─── */
+[data-testid="stMetric"] {
+    background-color: #F5F8FE;
+    border-radius: 8px;
+    padding: 1.1rem 1.4rem !important;
+    border: 1px solid #DDE6F5;
+    box-shadow: 0 1px 3px rgba(27,42,74,0.07);
+}
+[data-testid="stMetricLabel"] {
+    color: #6B7A99 !important;
+    font-size: 0.78rem !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+}
+[data-testid="stMetricValue"] {
+    color: #1B2A4A !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+}
+
+/* ── Botões ──────────────────────────────────────────── */
+.stButton > button {
+    border-radius: 5px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+    transition: opacity 0.15s ease !important;
+}
+.stButton > button:hover { opacity: 0.88 !important; }
 [data-testid="stFormSubmitButton"] > button {
     background-color: #1B4F8A !important;
     color: white !important;
     border: none !important;
+    border-radius: 5px !important;
+    font-weight: 600 !important;
 }
 
-/* Dataframe */
+/* ── Tabela ──────────────────────────────────────────── */
 [data-testid="stDataFrame"] { border-radius: 8px; overflow: hidden; }
 
-/* Alert boxes */
-[data-testid="stAlert"] { border-radius: 8px !important; }
+/* ── Alertas ─────────────────────────────────────────── */
+[data-testid="stAlert"] { border-radius: 7px !important; }
 
-/* Divider */
-hr { border-color: #E2E8F0 !important; }
+/* ── Divisores ───────────────────────────────────────── */
+hr { border-color: #E8EDF5 !important; margin: 1.5rem 0 !important; }
 
-/* Tabs */
+/* ── Tabs ────────────────────────────────────────────── */
 [data-testid="stTabs"] [role="tab"][aria-selected="true"] {
     color: #1B4F8A !important;
     border-bottom-color: #1B4F8A !important;
     font-weight: 600 !important;
+}
+
+/* ── Formulários ─────────────────────────────────────── */
+[data-testid="stTextInput"] input,
+[data-testid="stNumberInput"] input,
+[data-testid="stSelectbox"] > div {
+    border-radius: 5px !important;
 }
 </style>
 """, unsafe_allow_html=True)
