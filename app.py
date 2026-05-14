@@ -65,19 +65,19 @@ html, body, [class*="css"] { font-size: 17px !important; }
 h1 {
     color: #1B2A4A !important;
     font-weight: 700 !important;
-    font-size: 2.1rem !important;
+    font-size: 2.6rem !important;
     letter-spacing: -0.02em !important;
 }
 h2 {
     color: #1B2A4A !important;
     font-weight: 600 !important;
-    font-size: 1.5rem !important;
+    font-size: 1.9rem !important;
     letter-spacing: -0.01em !important;
 }
 h3 {
     color: #2D4A72 !important;
     font-weight: 500 !important;
-    font-size: 1.2rem !important;
+    font-size: 1.5rem !important;
 }
 p, li, span, label, div {
     font-size: 1rem !important;
