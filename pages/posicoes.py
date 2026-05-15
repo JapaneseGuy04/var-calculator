@@ -20,12 +20,18 @@ tab1, tab2, tab3, tab4 = st.tabs(["➕ Cadastro Manual", "🧮 Calculadora Greek
 
 with tab1:
     st.subheader("Cadastrar Posição")
+
+    # Seletores fora do form para atualizar os campos dinamicamente
+    col_sel1, col_sel2 = st.columns(2)
+    with col_sel1:
+        nomes_mesas = [m["nome"] for m in st.session_state.mesas]
+        mesa_sel = st.selectbox("Mesa de Trading", nomes_mesas)
+    with col_sel2:
+        tipo_ativo = st.selectbox("Tipo de Ativo", ["Ação", "Call", "Put"])
+
     with st.form("form_posicao"):
         col1, col2 = st.columns(2)
         with col1:
-            nomes_mesas = [m["nome"] for m in st.session_state.mesas]
-            mesa_sel = st.selectbox("Mesa de Trading", nomes_mesas)
-            tipo_ativo = st.selectbox("Tipo de Ativo", ["Ação", "Call", "Put"])
             ticker = st.text_input("Ticker", placeholder="Ex: PETR4.SA ou AAPL").upper().strip()
             quantidade = st.number_input("Quantidade", min_value=1, value=100, step=1)
         with col2:
