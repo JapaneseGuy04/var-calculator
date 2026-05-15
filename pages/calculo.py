@@ -158,6 +158,33 @@ if res_sel.get("ok"):
             semaforo_map = {"verde": "🟢 Verde", "amarelo": "🟡 Amarelo", "vermelho": "🔴 Vermelho", "inconclusivo": "⚪ Inconclusivo"}
             col4.metric("Semáforo Basel", semaforo_map.get(bt["semaforo"], bt["semaforo"]))
 
+            st.markdown("**Testes Estatísticos de Backtesting**")
+            tc1, tc2, tc3 = st.columns(3)
+            with tc1:
+                st.markdown("*Kupiec — Cobertura Incondicional*")
+                st.metric("LR_uc", f"{bt['lr_uc']:.4f}")
+                st.metric("p-valor", f"{bt['p_uc']:.4f}")
+                if bt["kupiec_rejeita"]:
+                    st.error("Rejeita H₀ (p < 0,05): taxa de exceções inadequada")
+                else:
+                    st.success("Não rejeita H₀ (p ≥ 0,05): cobertura adequada")
+            with tc2:
+                st.markdown("*Christoffersen — Independência*")
+                st.metric("LR_ind", f"{bt['lr_ind']:.4f}")
+                st.metric("p-valor", f"{bt['p_ind']:.4f}")
+                if bt["ind_rejeita"]:
+                    st.error("Rejeita H₀ (p < 0,05): exceções clusterizadas")
+                else:
+                    st.success("Não rejeita H₀ (p ≥ 0,05): exceções independentes")
+            with tc3:
+                st.markdown("*Christoffersen — Cobertura Condicional*")
+                st.metric("LR_cc", f"{bt['lr_cc']:.4f}")
+                st.metric("p-valor", f"{bt['p_cc']:.4f}")
+                if bt["cc_rejeita"]:
+                    st.error("Rejeita H₀ (p < 0,05): modelo inadequado")
+                else:
+                    st.success("Não rejeita H₀ (p ≥ 0,05): modelo adequado")
+
             fig_bt = go.Figure()
             fig_bt.add_trace(go.Scatter(x=bt["datas"], y=bt["pnl_real"], name="P&L Real",
                                         mode="lines", line=dict(color="blue")))
