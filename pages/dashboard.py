@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+from src.session import init_session
+init_session()
 import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np

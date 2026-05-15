@@ -1,4 +1,6 @@
 import streamlit as st
+from src.session import init_session
+init_session()
 
 st.title("⚙️ Parâmetros de Risco")
 st.markdown("Configure os parâmetros para o cálculo do VaR.")

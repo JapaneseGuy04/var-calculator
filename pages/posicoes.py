@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import io
 from src.options import greeks, implied_vol, black_scholes
+from src.session import init_session
+init_session()
 
 st.title("📋 Posições")
 st.markdown("Cadastre os ativos de cada mesa de trading.")

@@ -1,4 +1,6 @@
 import streamlit as st
+from src.session import init_session
+init_session()
 
 st.markdown("""
 <div style="padding: 2rem 0 1rem 0;">

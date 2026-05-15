@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+from src.session import init_session
+init_session()
 
 MESAS_PADRAO = [
     {"nome": "Mesa Renda Variável", "limite": 500_000},
