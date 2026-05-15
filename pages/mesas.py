@@ -13,6 +13,10 @@ st.title("🏦 Mesas de Trading")
 st.markdown("Gerencie as mesas de trading e seus limites de VaR.")
 st.markdown("---")
 
+if st.session_state.get("_msg_mesa"):
+    st.success(st.session_state._msg_mesa)
+    del st.session_state["_msg_mesa"]
+
 if st.session_state.mesas:
     st.subheader("Mesas Cadastradas")
     df_mesas = pd.DataFrame(st.session_state.mesas)
@@ -42,10 +46,10 @@ with st.form("form_mesa"):
             if nome_mesa in nomes_existentes:
                 idx = nomes_existentes.index(nome_mesa)
                 st.session_state.mesas[idx]["limite"] = limite_mesa
-                st.success(f"Mesa '{nome_mesa}' atualizada com limite R$ {limite_mesa:,.0f}")
+                st.session_state["_msg_mesa"] = f"Mesa '{nome_mesa}' atualizada com limite R$ {limite_mesa:,.0f}"
             else:
                 st.session_state.mesas.append({"nome": nome_mesa, "limite": limite_mesa})
-                st.success(f"Mesa '{nome_mesa}' adicionada com limite R$ {limite_mesa:,.0f}")
+                st.session_state["_msg_mesa"] = f"Mesa '{nome_mesa}' adicionada com limite R$ {limite_mesa:,.0f}"
             st.rerun()
 
 st.markdown("---")
@@ -57,10 +61,10 @@ if st.session_state.mesas:
     if st.button("Remover Mesa Selecionada", type="secondary"):
         st.session_state.mesas = [m for m in st.session_state.mesas if m["nome"] != mesa_remover]
         st.session_state.posicoes = [p for p in st.session_state.posicoes if p["mesa"] != mesa_remover]
-        st.success(f"Mesa '{mesa_remover}' removida.")
+        st.session_state["_msg_mesa"] = f"Mesa '{mesa_remover}' removida."
         st.rerun()
 
 if st.button("Restaurar Mesas Padrão"):
     st.session_state.mesas = MESAS_PADRAO.copy()
-    st.success("Mesas padrão restauradas.")
+    st.session_state["_msg_mesa"] = "Mesas padrão restauradas."
     st.rerun()

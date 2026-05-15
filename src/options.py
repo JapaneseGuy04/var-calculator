@@ -57,6 +57,34 @@ def theta(S, K, T, r, sigma, tipo="call"):
     return t / 365
 
 
+def implied_vol(S, K, T, r, market_price, tipo="call", tol=1e-6, max_iter=300):
+    """Calcula volatilidade implícita via bisseção invertendo Black-Scholes."""
+    if T <= 0 or S <= 0 or K <= 0:
+        return None
+
+    # Preço intrínseco mínimo
+    if tipo == "call":
+        intrinsic = max(S - K * np.exp(-r * T), 0)
+    else:
+        intrinsic = max(K * np.exp(-r * T) - S, 0)
+
+    if market_price <= intrinsic:
+        return None  # Preço abaixo do intrínseco — IV indefinida
+
+    vol_low, vol_high = 1e-4, 10.0
+    for _ in range(max_iter):
+        vol_mid = (vol_low + vol_high) / 2
+        price_mid = black_scholes(S, K, T, r, vol_mid, tipo)
+        diff = price_mid - market_price
+        if abs(diff) < tol:
+            return vol_mid
+        if diff < 0:
+            vol_low = vol_mid
+        else:
+            vol_high = vol_mid
+    return (vol_low + vol_high) / 2
+
+
 def greeks(S, K, T, r, sigma, tipo="call"):
     return {
         "delta": delta(S, K, T, r, sigma, tipo),
